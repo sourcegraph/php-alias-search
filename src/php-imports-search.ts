@@ -10,13 +10,16 @@ export function activate(): void {
                const phpImportsFilter = query.match(phpImportsRegex)
                const phpPkg = phpImportsFilter && phpImportsFilter.length >= 1 ? phpImportsFilter[1] : ''
                const phpImport = '\\buse\\s(?:.*)' + phpPkg + '[^\\s]*;$'
-               return query.replace(phpImportsRegex  , `(${phpImport})`)
+               return query.replace(phpImportsRegex  , `${phpImport} lang:php `)
            }
            return query
         }
    })
 
    sourcegraph.workspace.onDidOpenTextDocument.subscribe(doc => {
+       if (doc.languageId !== 'php') {
+            return
+        }
         from(doc.text.split('\n')).pipe(
             concatMap(
                 (line, lineNumber) => {
