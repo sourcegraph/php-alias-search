@@ -1,4 +1,4 @@
-# PHP imports search
+# PHP alias search
 
 This extension lets you search for use statements of PHP alises. It adds a new operator, `php.uses:`, which searches for all use statements of the alias passed to the operator. This extension also adds a "See all usages" link at the end of use statements, which will execute the `php.uses` search for the relevant alias.
 
