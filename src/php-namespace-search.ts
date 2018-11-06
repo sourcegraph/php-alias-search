@@ -5,7 +5,7 @@ import * as sourcegraph from 'sourcegraph'
 export function activate(): void {
    sourcegraph.search.registerQueryTransformer({
        transformQuery: (query: string) => {
-           const phpImportsRegex = /\bphp.imports:([^\s]*)/
+           const phpImportsRegex = /\bphp.uses:([^\s]*)/
            if (query.match(phpImportsRegex)) {
                const phpImportsFilter = query.match(phpImportsRegex)
                const phpPkg = phpImportsFilter && phpImportsFilter.length >= 1 ? phpImportsFilter[1] : ''
@@ -52,7 +52,7 @@ export function activate(): void {
                             ),
                             after: {
                                 contentText: 'See all usages',
-                                linkURL: '/search?q=php.imports:' + match.pkgName,
+                                linkURL: '/search?q=php.uses:' + match.pkgName,
                                 backgroundColor: 'pink',
                                 color: 'black'
                             }

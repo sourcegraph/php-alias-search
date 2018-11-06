@@ -1,7 +1,7 @@
 {
-  "name": "php-imports-search",
-  "title": "PHP imports search",
-  "description": "Lets you easily search for all files using a PHP package. Adds a new operator `php.imports:` for all import statements of the package passed to the operator. This extension also adds a \"See all usages\" link at the end of import statement lines, which will execute the `php.imports` search for the relevant package.",
+  "name": "php-namespace-search",
+  "title": "PHP namespace search",
+  "description": "Lets you easily search for all files using a PHP namespace. Adds a new operator, `php.uses:`, for all import statements of the package passed to the operator. This extension also adds a \"See all usages\" link at the end of import statement lines, which will execute the `php.uses` search for the relevant package.",
   "publisher": "farhan",
   "activationEvents": [
     "*"
@@ -16,12 +16,12 @@
   },
   "version": "0.0.0-DEVELOPMENT",
   "license": "MIT",
-  "main": "dist/php-imports-search.js",
+  "main": "dist/php-namespace-search.js",
   "scripts": {
     "tslint": "tslint -p tsconfig.json './src/**/*.ts'",
     "typecheck": "tsc -p tsconfig.json",
-    "build": "parcel build --out-file dist/php-imports-search.js src/php-imports-search.ts",
-    "serve": "parcel serve --no-hmr --out-file dist/php-imports-search.js src/php-imports-search.ts",
+    "build": "parcel build --out-file dist/php-namespace-search.js src/php-namespace-search.ts",
+    "serve": "parcel serve --no-hmr --out-file dist/php-namespace-search.js src/php-namespace-search.ts",
     "watch:typecheck": "tsc -p tsconfig.json -w",
     "watch:build": "tsc -p tsconfig.dist.json -w",
     "sourcegraph:prepublish": "npm run build"
