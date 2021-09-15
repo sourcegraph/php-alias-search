@@ -43,29 +43,29 @@ export function activate(): void {
                 toArray()
             )
             .subscribe((matches) => {
-                if (!matches) {
+                if (
+                    !matches ||
+                    sourcegraph.app.activeWindow?.activeViewComponent?.type !==
+                        "CodeEditor"
+                ) {
                     return;
                 }
-                if (
-                    sourcegraph.app.activeWindow?.activeViewComponent?.type ===
-                    "CodeEditor"
-                ) {
-                    sourcegraph.app.activeWindow.activeViewComponent.setDecorations(
-                        phpAliasSearchDecorationType,
-                        matches.map((match) => ({
-                            range: new sourcegraph.Range(
-                                new sourcegraph.Position(match.lineNumber, 0),
-                                new sourcegraph.Position(match.lineNumber, 0)
-                            ),
-                            after: {
-                                contentText: "See all usages",
-                                linkURL: "/search?q=php.uses:" + match.pkgName,
-                                backgroundColor: "pink",
-                                color: "black",
-                            },
-                        }))
-                    );
-                }
+
+                sourcegraph.app.activeWindow.activeViewComponent.setDecorations(
+                    phpAliasSearchDecorationType,
+                    matches.map((match) => ({
+                        range: new sourcegraph.Range(
+                            new sourcegraph.Position(match.lineNumber, 0),
+                            new sourcegraph.Position(match.lineNumber, 0)
+                        ),
+                        after: {
+                            contentText: "See all usages",
+                            linkURL: "/search?q=php.uses:" + match.pkgName,
+                            backgroundColor: "pink",
+                            color: "black",
+                        },
+                    }))
+                );
             });
     });
 }
