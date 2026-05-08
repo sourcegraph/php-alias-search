@@ -1,5 +1,4 @@
-import { EMPTY, from, of } from "rxjs";
-import { concatMap, toArray } from "rxjs/operators";
+import { EMPTY, concatMap, from, of, toArray } from "rxjs";
 import * as sourcegraph from "sourcegraph";
 
 const phpAliasSearchDecorationType = sourcegraph.app.createDecorationType();
